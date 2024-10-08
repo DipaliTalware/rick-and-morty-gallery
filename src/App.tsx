@@ -2,11 +2,12 @@ import './App.css'
 import {RickMortyGallery} from "./Rick&MortyGallery.tsx";
 import {useEffect, useState} from "react";
 import {data} from "../data.ts";
+import characterType from "./types/RickandMorty.ts";
 
 function App() {
     const [search, setSearch] = useState<string>("");
-    const [characters, setCharacters] = useState<typeof data>(data);
-    const [filteredCharacters, setFilteredCharacters] = useState<typeof data>([]);
+    const [characters, setCharacters] = useState<characterType[]>(data);
+    const [filteredCharacters, setFilteredCharacters] = useState<characterType[]>([]);
     const [error, setError] = useState<boolean>(false);
 
 
@@ -24,7 +25,7 @@ function App() {
         <>
             <input type="text" name="search" value={search} onChange={(e) => setSearch(e.target.value)}
                    placeholder="Search..."/>
-            {error? "Nothing found" :<RickMortyGallery characters={filteredCharacters}/>}
+            {error? <div>"Nothing found"</div> :<RickMortyGallery characters={filteredCharacters}/>}
         </>
     )
 }
